@@ -1,5 +1,7 @@
 #include <Windows.h>
 #include <iostream>
+#include <bitset>
+
 #include "SDKLib/Include/NKIOLIB.h"
 #include "SDKLib/Include/NKLCLIB.h"
 
@@ -11,7 +13,7 @@
 #else
 #pragma comment(lib, "./SDKLib/Lib/x86/NKIOLIBx86.lib")
 #pragma comment(lib, "./SDKLib/Lib/x86/NKLCLIBx86.lib")
-#endif
+#endif 
 
 HANDLE xServerThreadHdl = NULL;
 DWORD dwServerThreadId;
@@ -19,6 +21,7 @@ DWORD WINAPI ServerThread(LPVOID lpParameter); // need to set flag
 
 void originalExample();
 void proposedMethod();
+void simpleWrite(Output_to_HW outputShort);
 
 int main(void)
 {
@@ -83,5 +86,11 @@ void originalExample()
 
 void proposedMethod()
 {
+    simpleWrite(Y1_HIGH);
+    simpleWrite(Y13_HIGH);
+}
 
+void simpleWrite(Output_to_HW outputShort)
+{
+     NKDIO_PollingWriteDoByte(outputShort >> 8, std::bitset<8>(outputBytePort0));
 }

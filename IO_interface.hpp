@@ -57,6 +57,3 @@ enum Output_to_HW{
     Y14_HIGH    = (1 << 8) | LSB_SEVEN_HIGH,
     Y15_HIGH    = (1 << 8) | LSB_EIGHT_HIGH
 };
-
-void niceWrite(Output_to_HW outputShort);
-void niceRead(unsigned char port, unsigned char* digitalInput);
